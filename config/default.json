@@ -1,0 +1,4 @@
+{
+    "db" :"mongodb://localhost/bookify",
+    "port":"8000"
+}

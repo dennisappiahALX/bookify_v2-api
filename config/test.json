@@ -1,0 +1,4 @@
+{
+    "db" : "mongodb://localhost/bookify_tests",
+    "name" : "Bookify-test"
+}
