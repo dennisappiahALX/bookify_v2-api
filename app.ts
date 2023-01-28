@@ -1,8 +1,12 @@
-import express from "express"
-import booksRouter from "./routers/books"
+import express from "express";
+import { setupRoutes } from './startup/registerRoutes';
+import { setupDb } from "./startup/integrateDb";
 
 const app = express();
+setupRoutes(app);
+setupDb();
 
-app.use('/books', booksRouter);
 
-app.listen(8000, () => console.log('Server has started'))
+
+const port = process.env.PORT || 8000
+app.listen(port, () => console.log(`Server has started on port ${port}`))
