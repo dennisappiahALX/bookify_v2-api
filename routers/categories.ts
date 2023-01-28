@@ -1,24 +1,23 @@
-import {Router} from "express"
+import { Router } from "express";
+
 
 
 const router = Router();
 
 
 router.get('/', (req, res) => {
+    
+    
+})
+
+router.post('/', (req,res) => {
+    
+});
+
+
+router.get('/:id', (req, res) => {
    
 });
 
-
-router.post('/', (req, res) => {
-    
-});
-
-router.get('/:id', (req, res) => {
-    
-})
-
-router.put('/:id', (req, res) => {
-    
-})
 
 export default router
