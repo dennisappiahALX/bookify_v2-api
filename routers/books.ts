@@ -44,7 +44,7 @@ router.put('/:id', async(req, res) => {
     if (error)  return res.status(400).send(error.details[0].message);
 
     const category = await Category.findById(req.body.category.categoryId);
-    if (!category) return res.status(400).send('Invalid category');
+    if (!category) return res.status(400).send('Invalid category, Bad Request');
 
     const book = await Book.findByIdAndUpdate(req.params.id, {
         title: req.body.title,
