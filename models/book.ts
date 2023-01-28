@@ -1,14 +1,10 @@
-interface Category {
-    name: string
-}
+import mongoose from "mongoose";
 
-export default class Book {
-    id: number
+export default class BookModel {
     constructor(
         public title: string, 
-        public category: Category, 
+        public category: { name:string, categoryId: mongoose.Types.ObjectId},
         public numberInStock: number, 
         public dailyRentalRate: number ) {
-        this.id = Date.now()
     }
 }

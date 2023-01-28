@@ -22,9 +22,9 @@ export const Customer = mongoose.model('Customer', new mongoose.Schema({
 export const validateCustomer = (customer: CustomerModel) => {
     const schema = Joi.object({ 
         name: Joi.string().min(5).max(50).required(),
+        phone: Joi.string().min(5).max(50).required(),
         isGold : Joi.boolean(),
-        phone: Joi.string().min(5).max(50).required()
-        });
+    });
     
     return schema.validate(customer);
 }

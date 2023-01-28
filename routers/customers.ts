@@ -43,7 +43,7 @@ router.put('/:id', async(req, res) => {
         isGold : req.body.isGold,
         phone : req.body.phone }, { new : true });
 
-    if (!customer) return res.status(404).send('The customer with the given ID was not found!');
+    if (!customer) return res.status(404).send('The customer with the given ID was not found!!');
 
     res.status(200).send(customer); 
 });
