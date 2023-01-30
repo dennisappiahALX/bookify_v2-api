@@ -28,7 +28,9 @@ const userSchema = new mongoose.Schema<UserModel>({
 
     isAdmin : {
         type : Boolean
-    }
+    },
+    // roles:[], roles assigned to users
+    // operations: []set of user operations
 })
 
 

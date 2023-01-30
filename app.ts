@@ -1,12 +1,16 @@
+import jwt from "jsonwebtoken"
 import express from "express";
 import { setupRoutes } from './startup/registerRoutes';
 import { setupDb } from "./startup/integrateDb";
 import { setupConfig } from "./startup/setConfig";
 
 const app = express();
+
+
 setupRoutes(app);
 setupDb();
 setupConfig();
+
 
 
 
