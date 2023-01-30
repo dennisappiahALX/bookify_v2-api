@@ -1,6 +1,8 @@
 import {Category, validateCategory} from "../schemas/categoryCollection"
 import {Router} from "express"
 import auth from "../middlewares/authorization"
+import admin from "../middlewares/admin_authorization";
+import { Request, Response } from 'express';
 
 const router = Router()
 
@@ -10,7 +12,7 @@ router.get('/', async(req, res) => {
    res.status(200).send(categories);
 });
 
-// implemrnt post permissions from authenticated users
+// implement post permissions from authenticated users
 router.post('/', auth , async(req, res) => {
     const {error} = validateCategory(req.body);
     if (error)  return res.status(400).send(error.details[0].message);
@@ -45,8 +47,8 @@ router.put('/:id', async(req, res) => {
     res.status(200).send(category); 
 });
 
-
-router.delete('/:id', async(req, res) => {
+// only authenticated admins have delete authorization
+router.delete('/:id', [auth, admin], async(req:Request, res:Response) => {
     const category = await Category.findByIdAndRemove(req.params.id);
 
     if (!category) return res.status(404).send('The category with the given ID was not found!');
