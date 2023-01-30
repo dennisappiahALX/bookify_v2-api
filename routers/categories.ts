@@ -1,15 +1,15 @@
 import {Category, validateCategory} from "../schemas/categoryCollection"
-import {Router} from "express"
+import {response, Router} from "express"
 import auth from "../middlewares/authorization"
 import admin from "../middlewares/admin_authorization";
 import { Request, Response } from 'express';
+// import { catchErrors } from "../middlewares/catchErrors";
 
 const router = Router()
 
-
 router.get('/', async(req, res) => {
-   const categories = await Category.find().sort('name');
-   res.status(200).send(categories);
+    const categories = await Category.find().sort('name');
+    res.status(200).send(categories);
 });
 
 // implement post permissions from authenticated users
