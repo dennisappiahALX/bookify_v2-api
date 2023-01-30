@@ -24,7 +24,12 @@ If you're interested in easy access to collection of books based on your prefere
 Key Features:
 
 - App supports authentication and Authorization through CRUD operations
-- Only Admin Users have delete authorization.
+- Authenticated users have POST permissions(authorization) on the categories endpoint and GET permission on
+  current user endpoint
+  /api/categories
+  /api/users/me
+- Only authenticated admin users have delete authorization to delete a request at accepted endpoint
+  /api/categories/:id
 - Unauthenticated users do not have accesss to the platform till they are logged in.
 
 # Built With
