@@ -2,8 +2,7 @@ import {Router} from "express"
 import { User} from './../schemas/userCollection';
 import Joi from "joi"
 import bcrypt from "bcrypt"
-import jwt from "jsonwebtoken"
-import config from 'config'
+
 
 const router = Router();
 
@@ -31,6 +30,7 @@ router.post('/', async(req, res) => {
     res.send(token);
 });
 
+// implement logging out user on the client 
 
 
 export const validateAuth = (req: authRequestBody) => {
