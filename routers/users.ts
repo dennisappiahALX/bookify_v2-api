@@ -2,9 +2,17 @@ import {Router} from "express"
 import { User, validateUser } from './../schemas/userCollection';
 import _ from 'lodash'
 import bcrypt from "bcrypt"
+import auth from "../middlewares/authorization";
 
 
 const router = Router();
+
+
+// getting current user after authentication
+router.get('/me', auth, async(req:any, res) => {
+    const user= await User.findById(req.user._id).select('-password');
+    res.send(user);
+ });
 
 router.post('/', async(req, res) => {
     const {error} = validateUser(req.body);
