@@ -1,5 +1,5 @@
 import {createLogger, transports, format} from "winston"
-import 'winston-mongodb'
+// import 'winston-mongodb'
 
 const logger = createLogger({
     transports : [
@@ -14,12 +14,12 @@ const logger = createLogger({
             filename : 'logInfo.log'
         }),
         
-        new transports.MongoDB({
-            db : `${process.env.DB}`,
-            options: {useNewUrlParser: true, useUnifiedTopology: true},
-            collection : 'logs',
-            level: 'error'
-        })
+        // new transports.MongoDB({
+        //     db : `${process.env.DB}`,
+        //     options: {useNewUrlParser: true, useUnifiedTopology: true},
+        //     collection : 'logs',
+        //     level: 'error'
+        // })
     ],
 
     exceptionHandlers : [
