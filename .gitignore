@@ -1,2 +1,7 @@
 node_modules/
 .env
+loginfo.log
+logWarning.log
+.env.development
+.env.test
+.env.production
