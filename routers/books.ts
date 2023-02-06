@@ -1,7 +1,9 @@
 import {Router} from "express"
 import {Book, validateBook } from './../schemas/bookCollection';
 import { Category } from "../schemas/categoryCollection";
-
+import auth from "../middlewares/authorization"
+import admin from "../middlewares/admin_authorization";
+import { Request, Response } from 'express';
 
 const router = Router();
 
@@ -15,7 +17,7 @@ router.post('/', async(req, res) => {
     const {error} = validateBook(req.body);
     if (error)  return res.status(400).send(error.details[0].message);
 
-    const category = await Category.findById(req.body.category.categoryId);
+    const category = await Category.findById(req.body.category._id);
     if (!category) return res.status(400).send('Invalid category');
 
     const book = new Book( {
@@ -43,7 +45,7 @@ router.put('/:id', async(req, res) => {
     const {error} = validateBook(req.body);
     if (error)  return res.status(400).send(error.details[0].message);
 
-    const category = await Category.findById(req.body.category.categoryId);
+    const category = await Category.findById(req.body.category._id);
     if (!category) return res.status(400).send('Invalid category, Bad Request');
 
     const book = await Book.findByIdAndUpdate(req.params.id, {
@@ -62,7 +64,7 @@ router.put('/:id', async(req, res) => {
 });
 
 
-router.delete('/:id', async(req, res) => {
+router.delete('/:id', async(req:Request, res:Response) => {
     const book = await Book.findByIdAndRemove(req.params.id)
     
     if (!book) return res.status(404).send('The book with the given ID was not found!');
