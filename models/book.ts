@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 
-export default class BookModel {
-    constructor(
-        public title: string, 
-        public category: { name:string, categoryId: mongoose.Types.ObjectId},
-        public numberInStock: number, 
-        public dailyRentalRate: number ) {
-    }
+export default interface BookModel {
+    title: string
+    category: {
+        _id: mongoose.Types.ObjectId,
+    },
+    numberInStock : number,
+    dailyRentalRate: number
 }
