@@ -6,10 +6,12 @@ import rentalsRouter from "../routers/rentals"
 import usersRouter from "../routers/users"
 import loginsRouter from "../routers/auth"
 import express from "express"
+import cors from "cors"
 import { errorHandler } from '../middlewares/errorHandlers';
 
 export const setupRoutes = (app: any) => {
     app.use(express.json());
+    app.use(cors());
     app.use(express.urlencoded({ extended : true }));
     app.use('/api/courses', coursesRouter);
     app.use('/api/books', booksRouter);
