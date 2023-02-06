@@ -11,7 +11,6 @@ export const Book = mongoose.model('Book', new mongoose.Schema({
          maxlength : 255,
          trim : true
         },
-
     category : {
         type : categorySchema,
         required : true
@@ -35,8 +34,7 @@ export const validateBook = (book: BookModel ) => {
     const schema = Joi.object({ 
         title: Joi.string().min(5).max(50).required(),
         category: Joi.object({
-            name: Joi.string().min(5).max(50),
-            categoryId : Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()
+            _id : Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()
         }),
         numberInStock : Joi.number().min(0).required(),
         dailyRentalRate : Joi.number().min(0).required()
