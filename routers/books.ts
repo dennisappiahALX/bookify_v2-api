@@ -1,9 +1,8 @@
 import {Router} from "express"
 import {Book, validateBook } from './../schemas/bookCollection';
 import { Category } from "../schemas/categoryCollection";
-import auth from "../middlewares/authorization"
-import admin from "../middlewares/admin_authorization";
 import { Request, Response } from 'express';
+
 
 const router = Router();
 
