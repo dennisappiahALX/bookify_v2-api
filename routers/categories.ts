@@ -5,6 +5,7 @@ import admin from "../middlewares/admin_authorization";
 import { Request, Response } from 'express';
 // import { catchErrors } from "../middlewares/catchErrors";
 
+
 const router = Router()
 
 router.get('/', async(req, res) => {
