@@ -3,7 +3,6 @@ import {Book, validateBook } from './../schemas/bookCollection';
 import { Category } from "../schemas/categoryCollection";
 import { Request, Response } from 'express';
 import auth from "../middlewares/authorization";
-import admin from "../middlewares/admin_authorization";
 
 const router = Router();
 
@@ -64,7 +63,7 @@ router.put('/:id', async(req, res) => {
 });
 
 
-router.delete('/:id', [auth, admin], async(req:Request, res:Response) => {
+router.delete('/:id', auth, async(req:Request, res:Response) => {
     const book = await Book.findByIdAndRemove(req.params.id)
     
     if (!book) return res.status(404).send('The book with the given ID was not found!');
