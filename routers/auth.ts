@@ -30,8 +30,8 @@ router.post('/', async(req, res) => {
     res.send(token);
 });
 
-// implement logging out user on the client 
 
+// implement logging out user on the client 
 
 export const validateAuth = (req: authRequestBody) => {
     const schema = Joi.object({ 
