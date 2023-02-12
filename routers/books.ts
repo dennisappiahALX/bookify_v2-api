@@ -2,17 +2,18 @@ import {Router} from "express"
 import {Book, validateBook } from './../schemas/bookCollection';
 import { Category } from "../schemas/categoryCollection";
 import { Request, Response } from 'express';
-
+import auth from "../middlewares/authorization";
+import admin from "../middlewares/admin_authorization";
 
 const router = Router();
 
-router.get('/', async(req, res) => {
+router.get('/',async(req, res) => {
     const books = await Book.find().sort('title');
     res.send(books);
 });
 
 
-router.post('/', async(req, res) => {
+router.post('/', auth, async(req, res) => {
     const {error} = validateBook(req.body);
     if (error)  return res.status(400).send(error.details[0].message);
 
@@ -63,7 +64,7 @@ router.put('/:id', async(req, res) => {
 });
 
 
-router.delete('/:id', async(req:Request, res:Response) => {
+router.delete('/:id', [auth, admin], async(req:Request, res:Response) => {
     const book = await Book.findByIdAndRemove(req.params.id)
     
     if (!book) return res.status(404).send('The book with the given ID was not found!');
